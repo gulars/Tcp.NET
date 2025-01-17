@@ -1,5 +1,6 @@
 ﻿using PHS.Networking.Utilities;
 using System;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace Tcp.NET.Client.Models
@@ -17,8 +18,9 @@ namespace Tcp.NET.Client.Models
         public byte[] Token { get; protected set; }
         public bool UseDisconnectBytes { get; protected set; }
         public byte[] DisconnectBytes { get; protected set; }
+        public X509CertificateCollection ClientCertificates { get; protected set; }
 
-        public ParamsTcpClient(string host, int port, string endOfLineCharacters, string token = "", bool isSSL = true, bool onlyEmitBytes = false, bool usePingPong = true, string pingCharacters = "ping", string pongCharacters = "pong", bool useDisconnectBytes = true, byte[] disconnectBytes = null)
+        public ParamsTcpClient(string host, int port, string endOfLineCharacters, string token = "", bool isSSL = true, bool onlyEmitBytes = false, bool usePingPong = true, string pingCharacters = "ping", string pongCharacters = "pong", bool useDisconnectBytes = true, byte[] disconnectBytes = null, X509CertificateCollection clientCertificates = null)
         {
             if (string.IsNullOrWhiteSpace(host))
             {
@@ -55,6 +57,7 @@ namespace Tcp.NET.Client.Models
             OnlyEmitBytes = onlyEmitBytes;
             UseDisconnectBytes = useDisconnectBytes;
             DisconnectBytes = disconnectBytes;
+            ClientCertificates = clientCertificates;
 
             if (!string.IsNullOrWhiteSpace(token))
             {

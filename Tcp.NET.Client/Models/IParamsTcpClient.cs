@@ -1,4 +1,5 @@
 ﻿using PHS.Networking.Models;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Tcp.NET.Client.Models
 {
@@ -15,5 +16,6 @@ namespace Tcp.NET.Client.Models
         byte[] Token { get; }
         bool UseDisconnectBytes { get; }
         bool UsePingPong { get; }
+        X509CertificateCollection ClientCertificates { get; }
     }
 }

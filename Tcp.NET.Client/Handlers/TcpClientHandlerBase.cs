@@ -385,7 +385,8 @@ namespace Tcp.NET.Client.Handlers
 
             await sslStream.AuthenticateAsClientAsync(new SslClientAuthenticationOptions
             {
-                TargetHost = _parameters.Host
+                TargetHost = _parameters.Host,
+                ClientCertificates = _parameters.ClientCertificates,
             }, cancellationToken).ConfigureAwait(false);
 
             if (sslStream.IsAuthenticated && sslStream.IsEncrypted && !cancellationToken.IsCancellationRequested)
